@@ -36,3 +36,11 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+.mvn
+.idea
+allure-results
+target
+browsers.json
+mvnw
+mvnw.cmd
