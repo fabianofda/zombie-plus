@@ -43,4 +43,4 @@ allure-results
 target
 browsers.json
 mvnw
-mvnw.cmd
+/mvnw.cmd

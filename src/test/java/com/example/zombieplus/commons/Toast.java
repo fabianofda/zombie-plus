@@ -9,21 +9,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class Toast {
-    private WebDriver driver;
+    private final WebDriverWait wait;
 
     public Toast(WebDriver driver) {
-        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public String getToastText(WebElement toastElement) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(toastElement));
+        waitForVisibility(toastElement);
 
         String toastText = toastElement.getText();
 
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".toast")));
+        waitForInvisibility(By.cssSelector(".toast"));
 
         return toastText;
     }
 
+    private void waitForVisibility(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    private void waitForInvisibility(By locator) {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
 }
